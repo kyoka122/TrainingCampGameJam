@@ -5,8 +5,6 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField]
-    CardData cardData;
-    [SerializeField]
     bool useObjectPool = true;
     [SerializeField]
     PoolManager poolManager;
