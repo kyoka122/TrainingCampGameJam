@@ -7,19 +7,7 @@ using UniRx;
 
 namespace Character
 {
-    public interface ICharacter
-    {
-        public float Top { get; }
-        public float Buttom { get; }
-        public IReadOnlyReactiveProperty<JumpState> State { get; }
-    }
-
-    public interface IHeightProvider
-    {
-        public IReadOnlyReactiveProperty<float> Height { get; }
-    }
-
-    public class JumpCharacter : MonoBehaviour, ICharacter, IHeightProvider
+    public class JumpCharacter : MonoBehaviour
     {
         [SerializeField] private BoxCollider _boxCollider;
         [SerializeField] private float _maxHeight;
