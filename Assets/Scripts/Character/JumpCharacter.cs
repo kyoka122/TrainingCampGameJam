@@ -69,7 +69,7 @@ namespace Character
                 case JumpState.Rise:
                     {
                         transform.localPosition += new Vector3(0, _speed * Time.deltaTime, 0);
-                        if (transform.position.y > _maxHeight)
+                        if (transform.localPosition.y > _maxHeight)
                         {
                             transform.localPosition = new Vector3(transform.localPosition.x, _maxHeight, transform.localPosition.z);
                             _state.Value = JumpState.Stop;
