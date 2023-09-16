@@ -7,10 +7,10 @@ using static UnityEditor.Progress;
 public class CardData : ScriptableObject
 {
     [SerializeField]
-    private List<Item> itemLists = new List<Item>();
+    private List<JumpObject> jumpObjectLists = new List<JumpObject>();
 
-    public List<Item> GetItemLists()
+    public List<JumpObject> GetItemLists()
     {
-        return itemLists;
+        return jumpObjectLists;
     }
 }
