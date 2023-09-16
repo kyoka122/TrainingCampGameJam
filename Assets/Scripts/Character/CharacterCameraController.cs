@@ -30,8 +30,7 @@ namespace Character
                             ChaseCharacter().Forget();
                             break;
                         }
-                        break;
-                    default:
+                    case JumpState.Fall:
                         {
                             _isChasing = false;
                             break;
