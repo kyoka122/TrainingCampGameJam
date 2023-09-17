@@ -178,7 +178,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _excutionTime: 2
+  _excutionTime: 0.5
   _character: {fileID: 289032651}
   _borderLine: {fileID: 1442282308}
   _color: {r: 1, g: 0, b: 0, a: 1}

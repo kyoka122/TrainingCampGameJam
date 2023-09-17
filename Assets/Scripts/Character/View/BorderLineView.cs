@@ -36,7 +36,7 @@ namespace Character.View
 
         private void Update()
         {
-            if(_borderLine.HeightObservable.Value < _character.HeightObservable.Value)
+            if(_borderLine.HeightObservable.Value > _character.HeightObservable.Value)
             {
                 _spriteRenderer.color = _color;
             }
@@ -49,7 +49,7 @@ namespace Character.View
             {
                 _timeCounter += Time.deltaTime;
 
-                _spriteRenderer.color = new Color(_spriteRenderer.color.r, _spriteRenderer.color.g, _spriteRenderer.color.b, _spriteRenderer.color.a + _curve.Evaluate(_timeCounter/_excutionTime));
+                _spriteRenderer.color = new Color(_spriteRenderer.color.r, _spriteRenderer.color.g, _spriteRenderer.color.b, _curve.Evaluate(_timeCounter/_excutionTime));
 
                 if(_spriteRenderer.color.a >= 1.0f)
                 {
