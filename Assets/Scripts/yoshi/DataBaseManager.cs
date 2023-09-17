@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class DataBaseManager : MonoBehaviour
@@ -26,7 +27,7 @@ public class DataBaseManager : MonoBehaviour
             {
                 JumpObject jumpObject = ScriptableObject.CreateInstance("JumpObject") as JumpObject;
                 jumpObject = cardData.jumpObjectLists[i];
-                Debug.Log(jumpObject.name + " " + jumpObject.id[j]);
+                Debug.Log(jumpObject.objectName);
             }
 
         }
@@ -35,21 +36,20 @@ public class DataBaseManager : MonoBehaviour
     //ìÆçÏämîF
     void Update()
     {
-        if(!isRandom)
+        UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
+        if (!isRandom)
         {
-            Debug.Log(RandomCardsSelect(level));
             isRandom = true;
         }
     }
 
 
-    int RandomCardsSelect(int level)
+    void RandomCardsSelect(int level)
     {
         for (int i = 0; i < numberOfCards; i++)
         {
             rd = Random.Range(0, level);
         }
-        return rd;
     }
 }
 
