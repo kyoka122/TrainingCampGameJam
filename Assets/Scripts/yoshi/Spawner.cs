@@ -1,69 +1,62 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     [SerializeField]
-    bool useObjectPool = true;
-    [SerializeField]
     PoolManager poolManager;
     [SerializeField]
-    GameObject prefab;
-    [SerializeField]
-    int spawnCount;
-    [SerializeField]
-    float spawnInterval;
-    [SerializeField]
-    float destroyWaitTime;
+    List<GameObject> prefabs;
     [SerializeField]
     List<Transform> pos = new List<Transform>();
-
-    WaitForSeconds spawnIntervalWait;
+    Destroyer destroyer;
+    public Dictionary<JumpObjectType, List<Destroyer>> spawnedData;
+    //RandomCardSelect randomCardSelect = new RandomCardSelect();
+    [SerializeField] private RandomCardSelect select;
+    public int spawnCount;
 
     void Start()
-
     {
-        spawnIntervalWait = new WaitForSeconds(spawnInterval);
+        spawnedData = new Dictionary<JumpObjectType, List<Destroyer>>();
+        for (int i = 0; i < prefabs.Count; i++) Spawn(prefabs[i], (JumpObjectType)Enum.GetValues(typeof(JumpObjectType)).GetValue(i));
 
-        StartCoroutine(nameof(SpawnTimer));
+        //spawnedData = new List<Destroyer>(spawnCount);
+        select.SelectCards();
+
+        int index = 0;
+        foreach(int num in select.compareNum)
+        {
+            ActiveSwitch((JumpObjectType)Enum.GetValues(typeof(JumpObjectType)).GetValue(num), index);
+            index++;
+        }
+
     }
 
-    IEnumerator SpawnTimer()
+    void Spawn(GameObject prefab, JumpObjectType type)
     {
-        int i;
-
-        while (true)
+        var destroyers = new List<Destroyer>();
+        for (int i = 0; i < spawnCount; i++)
         {
-            for (i = 0; i < spawnCount; i++)
-            {
-                Spawn(prefab);
-            }
-
-            yield return spawnIntervalWait;
+            destroyer = poolManager.GetGameObject(prefab, pos[i].localPosition, Quaternion.identity).GetComponent<Destroyer>();
+            destroyer.gameObject.SetActive(false);
+            destroyers.Add(destroyer);
         }
+
+        spawnedData.Add(type, destroyers);
     }
 
-    void Spawn(GameObject prefab)
+    public void ActiveSwitch(JumpObjectType type, int index)
     {
-        Destroyer destroyer;
+        spawnedData[type][index].gameObject.SetActive(true);
+    }
 
-        for (int i = 0;i < spawnCount; i++)
-        {
-            if (useObjectPool)
-            {
-                destroyer = poolManager.GetGameObject(prefab, pos[i].localPosition, Quaternion.identity).GetComponent<Destroyer>();
-                destroyer.PoolManager = poolManager;
-            }
-            else
-            {
-                destroyer = Instantiate(prefab).GetComponent<Destroyer>();
-            }
-
-            if (destroyer != null)
-            {
-                destroyer.StartDestroyTimer(destroyWaitTime);
-            }
-        }
+    public class CardData
+    {
+        public int cardNum;
+        public Destroyer destroyer;
     }
 }
