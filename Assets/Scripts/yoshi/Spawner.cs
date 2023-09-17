@@ -15,7 +15,6 @@ public class Spawner : MonoBehaviour
     List<Transform> pos = new List<Transform>();
     Destroyer destroyer;
     public Dictionary<JumpObjectType, List<Destroyer>> spawnedData;
-    //RandomCardSelect randomCardSelect = new RandomCardSelect();
     [SerializeField] private RandomCardSelect select;
     public int spawnCount;
 
