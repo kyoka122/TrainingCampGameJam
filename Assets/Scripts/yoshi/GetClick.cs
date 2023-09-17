@@ -1,10 +1,16 @@
+using Cysharp.Threading.Tasks.Triggers;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class GetClick : MonoBehaviour
 {
-    GameObject clickedGameObject;
+    [SerializeField]
+    Spawner spawner;
+    [SerializeField]
+    int cardNum;
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -14,8 +20,18 @@ public class GetClick : MonoBehaviour
 
             if (hit2d)
             {
-                clickedGameObject = hit2d.transform.gameObject;
-                Debug.Log(clickedGameObject);
+                /*
+                for (int i = 0; i < spawner.spawnCount; i++)
+                {
+                    //spawner.spawnedData[i].gameObject.SetActive(false);
+                }*/
+                foreach (List<Destroyer> spData in spawner.spawnedData.Values)
+                {
+                    foreach(Destroyer sp in spData)
+                    {
+                        sp.gameObject.SetActive(false);
+                    }
+                }
             }
         }
     }
