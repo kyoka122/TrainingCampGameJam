@@ -20,9 +20,17 @@ public class GetClick : MonoBehaviour
 
             if (hit2d)
             {
+                /*
                 for (int i = 0; i < spawner.spawnCount; i++)
                 {
                     //spawner.spawnedData[i].gameObject.SetActive(false);
+                }*/
+                foreach (List<Destroyer> spData in spawner.spawnedData.Values)
+                {
+                    foreach(Destroyer sp in spData)
+                    {
+                        sp.gameObject.SetActive(false);
+                    }
                 }
             }
         }
