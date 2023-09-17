@@ -8,7 +8,6 @@ public class DataBaseManager : MonoBehaviour
     [SerializeField] CardData cardData;
     [SerializeField] int level;
     [SerializeField] int numberOfCards;
-    [SerializeField] bool isRandom;
     private int rd;
 
     public void AddCardData(JumpObject jumpObject)
@@ -27,28 +26,8 @@ public class DataBaseManager : MonoBehaviour
             {
                 JumpObject jumpObject = ScriptableObject.CreateInstance("JumpObject") as JumpObject;
                 jumpObject = cardData.jumpObjectLists[i];
-                Debug.Log(jumpObject.objectName);
             }
 
-        }
-    }
-
-    //ìÆçÏämîF
-    void Update()
-    {
-        UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
-        if (!isRandom)
-        {
-            isRandom = true;
-        }
-    }
-
-
-    void RandomCardsSelect(int level)
-    {
-        for (int i = 0; i < numberOfCards; i++)
-        {
-            rd = Random.Range(0, level);
         }
     }
 }

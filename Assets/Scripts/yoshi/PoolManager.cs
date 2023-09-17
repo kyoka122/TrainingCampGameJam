@@ -18,17 +18,17 @@ public class PoolManager : MonoBehaviour
     }
 
 
-    void OnGetFromPool(GameObject obj)
+    public void OnGetFromPool(GameObject obj)
     {
         obj.SetActive(true);
     }    
 
-    void OnReleaseToPool(GameObject obj)
+    public void OnReleaseToPool(GameObject obj)
     {
         obj.SetActive(false);
     }
 
-    void OnDestroyPooledObject(GameObject obj)
+    public void OnDestroyPooledObject(GameObject obj)
     {
         Destroy(obj);   
     }
@@ -42,7 +42,6 @@ public class PoolManager : MonoBehaviour
         tf.rotation = rotation;   
 
         return obj;
-
     }
 
     public void ReleaseGameObject(GameObject obj)
