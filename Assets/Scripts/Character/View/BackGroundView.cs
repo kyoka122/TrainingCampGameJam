@@ -29,7 +29,7 @@ namespace Character.View
             {
                 transform.localPosition = new Vector3(transform.localPosition.x, -height, transform.localPosition.z);
 
-                if(lastGeneratedObject.transform.position.y < _generateY)
+                while (lastGeneratedObject.transform.position.y < _generateY + (transform.position.y - transform.localPosition.y))
                 {
                     GameObject obj = Instantiate(_generateObject);
                     obj.transform.parent = transform;
