@@ -22,7 +22,7 @@ public class GetClick : MonoBehaviour
             {
                 for (int i = 0; i < spawner.spawnCount; i++)
                 {
-                    spawner.spawnedData[i].gameObject.SetActive(false);
+                    //spawner.spawnedData[i].gameObject.SetActive(false);
                 }
             }
         }

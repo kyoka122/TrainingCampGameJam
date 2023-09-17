@@ -329,7 +329,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolManager: {fileID: 466376286}
-  prefab: {fileID: 7878988428927738851, guid: 4c3374647cfdbcf40a6f05612ba5b371, type: 3}
+  prefabs:
+  - {fileID: 7878988428927738851, guid: 4c3374647cfdbcf40a6f05612ba5b371, type: 3}
+  - {fileID: 6540999184888005008, guid: 44a94416cec140b4b9ed6e52040e42bd, type: 3}
+  - {fileID: 4799585695970527162, guid: 158f404758ee0e64f8989c51e47eeb3c, type: 3}
   pos:
   - {fileID: 1515283561}
   - {fileID: 891518543}
@@ -338,6 +341,7 @@ MonoBehaviour:
   - {fileID: 2098072799}
   - {fileID: 518575757}
   spawnedData: []
+  select: {fileID: 1445135431}
   spawnCount: 6
 --- !u!4 &635744915
 Transform:
@@ -361,13 +365,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635744912}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c6f1fe75e2053146a7a536ddb7a68fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   poolManager: {fileID: 466376286}
-  prefab: {fileID: 4799585695970527162, guid: 158f404758ee0e64f8989c51e47eeb3c, type: 3}
+  prefabs: []
   pos:
   - {fileID: 1515283561}
   - {fileID: 891518543}
@@ -376,6 +380,7 @@ MonoBehaviour:
   - {fileID: 2098072799}
   - {fileID: 518575757}
   spawnedData: []
+  select: {fileID: 0}
   spawnCount: 6
 --- !u!114 &635744917
 MonoBehaviour:
@@ -384,13 +389,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635744912}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c6f1fe75e2053146a7a536ddb7a68fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   poolManager: {fileID: 466376286}
-  prefab: {fileID: 6540999184888005008, guid: 44a94416cec140b4b9ed6e52040e42bd, type: 3}
+  prefabs: []
   pos:
   - {fileID: 1515283561}
   - {fileID: 891518543}
@@ -399,6 +404,7 @@ MonoBehaviour:
   - {fileID: 2098072799}
   - {fileID: 518575757}
   spawnedData: []
+  select: {fileID: 0}
   spawnCount: 6
 --- !u!1 &875524630
 GameObject:

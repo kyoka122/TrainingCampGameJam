@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -8,34 +10,48 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     PoolManager poolManager;
     [SerializeField]
-    GameObject prefab;
+    List<GameObject> prefabs;
     [SerializeField]
     List<Transform> pos = new List<Transform>();
     Destroyer destroyer;
-    public List<Destroyer> spawnedData;
-    RandomCardSelect randomCardSelect = new RandomCardSelect();
+    public Dictionary<JumpObjectType, List<Destroyer>> spawnedData;
+    //RandomCardSelect randomCardSelect = new RandomCardSelect();
+    [SerializeField] private RandomCardSelect select;
     public int spawnCount;
 
     void Start()
     {
-        spawnedData = new List<Destroyer>(spawnCount);
+        spawnedData = new Dictionary<JumpObjectType, List<Destroyer>>();
+        for (int i = 0; i < prefabs.Count; i++) Spawn(prefabs[i], (JumpObjectType)Enum.GetValues(typeof(JumpObjectType)).GetValue(i));
 
-        Spawn(prefab);
+        //spawnedData = new List<Destroyer>(spawnCount);
+        select.SelectCards();
+
+        int index = 0;
+        foreach(int num in select.compareNum)
+        {
+            ActiveSwitch((JumpObjectType)Enum.GetValues(typeof(JumpObjectType)).GetValue(num), index);
+            index++;
+        }
+
     }
 
-    void Spawn(GameObject prefab)
+    void Spawn(GameObject prefab, JumpObjectType type)
     {
+        var destroyers = new List<Destroyer>();
         for (int i = 0; i < spawnCount; i++)
         {
             destroyer = poolManager.GetGameObject(prefab, pos[i].localPosition, Quaternion.identity).GetComponent<Destroyer>();
             destroyer.gameObject.SetActive(false);
-            spawnedData.Add(destroyer);
+            destroyers.Add(destroyer);
         }
+
+        spawnedData.Add(type, destroyers);
     }
 
-    public void ActiveSwitch(int cardNum)
+    public void ActiveSwitch(JumpObjectType type, int index)
     {
-        spawnedData[cardNum].gameObject.SetActive(true);
+        spawnedData[type][index].gameObject.SetActive(true);
     }
 
     public class CardData

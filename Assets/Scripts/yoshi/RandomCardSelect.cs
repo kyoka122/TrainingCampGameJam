@@ -23,25 +23,22 @@ public class RandomCardSelect : MonoBehaviour
 
     void Start()
     {
-        SelectCards();
+        //SelectCards();
     }
     void Update()
     {
         UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
-        if(isSameCards())
-        {
-            ChangeLastCard();
-        }
-        if (isSelect) {
-            for (int i = 0; i < cardNum; i++)
-            {
-                spawner.ActiveSwitch(compareNum[i]);
-            }
-        }
-        isSelect = false;
+
+        //if (isSelect) {
+          //  for (int i = 0; i < cardNum; i++)
+            //{
+              //  spawner.ActiveSwitch(compareNum[i]);
+            //}
+        //}
+        //isSelect = false;
     }
 
-    void SelectCards()
+    public void SelectCards()
     {
         for (int i = 0; i < cardNum; i++)
         {
@@ -49,6 +46,11 @@ public class RandomCardSelect : MonoBehaviour
             JumpObjectType selectType = (JumpObjectType)rd;
             compareNum.Add(rd);
             Debug.Log(compareNum[i]);
+        }
+
+        if (isSameCards())
+        {
+            ChangeLastCard();
         }
     }
 
