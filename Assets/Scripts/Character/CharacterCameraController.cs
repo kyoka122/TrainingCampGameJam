@@ -9,47 +9,25 @@ namespace Character
     public class CharacterCameraController : MonoBehaviour
     {
         [SerializeField] private Camera _characterCamera;
-        [SerializeField] private JumpCharacter _character;
+        [SerializeField] private JumpCharacterHeightModel _character;
+        [SerializeField] private GameObject _characterView;
+        [SerializeField] private GameObject _borderLineView;
         [SerializeField] private float _cameraHeightMultiply;
 
-        private bool _isChasing = false;
-
-        private async void Awake()
+        private void Awake()
         {
-            await UniTask.WaitUntil(() => _character.IsInitialized);
-
-            _character.transform.parent = _characterCamera.transform;
-
-            _character.State.Subscribe(state =>
-            {
-                switch (state)
-                {
-                    case JumpState.Rise:
-                        {
-                            _isChasing = true;
-                            ChaseCharacter().Forget();
-                            break;
-                        }
-                    case JumpState.Fall:
-                        {
-                            _isChasing = false;
-                            break;
-                        }
-                }
-            });
+            _characterView.transform.parent = _characterCamera.transform;
+            _borderLineView.transform.parent = _characterCamera.transform;
         }
 
-        private async UniTask ChaseCharacter()
+        private void Update()
         {
-            while (_isChasing)
-            {
-                _characterCamera.transform.position = new Vector3
-                    (_characterCamera.transform.position.x,
-                    _character.Height.Value * _cameraHeightMultiply,
-                    _characterCamera.transform.position.z);
+            var cameraPosition = new Vector3
+                (_characterCamera.transform.position.x,
+                _character.HeightObservable.Value * _cameraHeightMultiply,
+                _characterCamera.transform.position.z);
 
-                await UniTask.DelayFrame(1, cancellationToken: this.GetCancellationTokenOnDestroy());
-            }
+            if (_characterCamera.transform.position.y < cameraPosition.y) _characterCamera.transform.position = cameraPosition;
         }
     }
 }
