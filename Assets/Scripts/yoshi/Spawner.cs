@@ -23,7 +23,7 @@ public class Spawner : MonoBehaviour
         spawnedData = new Dictionary<JumpObjectType, List<Destroyer>>();
         for (int i = 0; i < prefabs.Count; i++) Spawn(prefabs[i], (JumpObjectType)Enum.GetValues(typeof(JumpObjectType)).GetValue(i));
 
-        SetCard();
+        //SetCard();
     }
 
     public void SetCard()
