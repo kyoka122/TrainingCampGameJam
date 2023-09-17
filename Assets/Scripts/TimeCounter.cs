@@ -4,27 +4,36 @@ using UnityEngine.UI;
 using TMPro;
 public class TimeCounter : MonoBehaviour
 {
-    //カウントダウン
-    public float countdown = 30.00f;
+    public float countTime { get; private set; }
     
     //時間を表示するText型の変数
     public TextMeshProUGUI timeText;
  
-    // Update is called once per frame
-    void Update()
+    public void Init(float timeValue)
     {
+        countTime = timeValue;
+        timeText.text = timeValue.ToString("f2");
+    }
+    public void UpdateTimer()
+    {
+        //countdownが0以下になったとき
+        if (countTime <= 0 )
+        {
+            return;
+        }
+        
         //時間をカウントダウンする
 
-        countdown -= Time.deltaTime;
+        countTime -= Time.deltaTime;
         
         //時間を表示する
-        timeText.text = countdown.ToString("f2") ;
- 
-        //countdownが0以下になったとき
-        if (countdown <= 0 )
-        {
-            timeText.text = "終了です";
-        }
+        timeText.text = countTime.ToString("f2") ;
+
+    }
+    
+    public bool IsTimeOver()
+    {
+        return countTime <= 0;
     }
 }
 

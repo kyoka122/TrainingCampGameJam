@@ -3,12 +3,12 @@ namespace Character
     public interface IJumpLogic
     {
         /// <summary>
-        /// Jump‚ªŒÄ‚Î‚ê‚½‚Æ‚«‚Ìˆ—
+        /// Jumpï¿½ï¿½ï¿½Ä‚Î‚ê‚½ï¿½Æ‚ï¿½ï¿½Ìï¿½ï¿½ï¿½
         /// </summary>
         public void Jump(float power);
 
         /// <summary>
-        /// •W‚‚Ì•ÏˆÊ‚ğæ“¾‚·‚é ‘¬“x“™‚ª•Ï‚í‚é‰Â”\«‚ª‚ ‚é
+        /// ï¿½Wï¿½ï¿½ï¿½Ì•ÏˆÊ‚ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½Ï‚ï¿½ï¿½Â”\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         public float GetDeltaHeight(float deltaTime);
     }

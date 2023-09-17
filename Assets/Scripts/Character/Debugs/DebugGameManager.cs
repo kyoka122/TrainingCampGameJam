@@ -22,7 +22,7 @@ namespace Character.Debugger
             await UniTask.WaitUntil(() => _character.IsInitialized);
             await UniTask.WaitUntil(() => _borderLine.IsInitialized);
 
-            //Å‰ˆê“x‚¾‚¯ƒ{[ƒ_[ƒ‰ƒCƒ“‚ÌˆÊ’u‚ğİ’è
+            //æœ€åˆä¸€åº¦ã ã‘ãƒœãƒ¼ãƒ€ãƒ¼ãƒ©ã‚¤ãƒ³ã®ä½ç½®ã‚’è¨­å®š
             _borderLine.ChangeBorderLineHeight(_character, _boderLineUnderLength);
             _borderLineView.SetActive(false);
 

@@ -33,7 +33,7 @@ namespace Character
         }
 
         /// <summary>
-        /// �X�V���W�b�N
+        /// 更新ロジック
         /// </summary>
         public void UpdateHeight(float deltaTime)
         {
@@ -45,7 +45,7 @@ namespace Character
         }
 
         /// <summary>
-        /// �W�����v�̃��W�b�N�ɂ���ăX�R�A�̐��ڂ��s��
+        /// ジャンプのロジックによってスコアの推移を行う
         /// </summary>
         public void Jump(float power)
         {
