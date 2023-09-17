@@ -1,54 +1,55 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Managers.InGameManagerStates;
 using UnityEngine;
 
 namespace Managers
 {
-    public abstract class InGameManager : MonoBehaviour
+    public abstract class BaseInGameManager : MonoBehaviour
     {
-        private InGameManager
-        private enum InGameState
-        {
-            Jumping,
-            Falling
-        }
+        protected abstract InGameState State { get; }
         
+        [SerializeField] private List<InGameStateData> stateData;
+        
+        private BaseInGameManager _currentInGameManager;
+
+        private void Start()
+        {
+            _currentInGameManager = stateData.First().InGameManager;
+            _currentInGameManager.Entry();
+        }
+
         private void Update()
         {
-            
-
-        }
-
-        #region Actions
-
-        private void Jump()
-        {
-
-        }
-
-        private void ActiveJumpCard()
-        {
-
-        }
-
-        #endregion
-
-        #region Updates
-
-        private void UpdateWhileJump()
-        {
-            
-        }
-
-        private void UpdateWhileActiveCard()
-        {
-            if (click)
+            var newState = _currentInGameManager.UpdateGame();
+            if (newState!=_currentInGameManager.State)
             {
-                ActiveJumpCard();
+                _currentInGameManager.Exit();
+                _currentInGameManager = stateData.Find(data => data.State==newState).InGameManager;
+                _currentInGameManager.Entry();
             }
         }
 
-        #endregion
+        protected abstract void Entry();
 
+        protected abstract InGameState UpdateGame();
+
+        protected abstract void Exit();
+        
+
+        #region Actions
+
+        protected void Jump()
+        {
+            
+        }
+
+        protected void ActiveJumpCard()
+        {
+            
+        }
+
+        #endregion
 
     }
 }

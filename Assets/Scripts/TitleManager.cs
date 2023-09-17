@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class InGameGameManager : MonoBehaviour
+public class TitleManager : MonoBehaviour
 {
     private void Update()
     {

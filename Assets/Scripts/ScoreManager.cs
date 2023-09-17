@@ -1,4 +1,4 @@
-﻿namespace DefaultNamespace
+﻿namespace Managers
 {
     public class ScoreManager
     {
