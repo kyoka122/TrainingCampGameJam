@@ -11,7 +11,7 @@ public class GetClick : MonoBehaviour
     [SerializeField]
     int cardNum;
 
-    void Update()
+    public JumpObjectType? TryGetJumpObject()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -20,6 +20,9 @@ public class GetClick : MonoBehaviour
 
             if (hit2d)
             {
+                var isJumpCard =  hit2d.transform.gameObject.GetComponent<Destroyer>()?.jumpObjectType;
+                if(isJumpCard == null) return null;
+
                 foreach (List<Destroyer> spData in spawner.spawnedData.Values)
                 {
                     foreach(Destroyer sp in spData)
@@ -27,7 +30,15 @@ public class GetClick : MonoBehaviour
                         sp.gameObject.SetActive(false);
                     }
                 }
+                Debug.Log(isJumpCard.Value);
+                return isJumpCard;
             }
         }
+        return null;
+    }
+
+    private void Update()
+    {
+        TryGetJumpObject();
     }
 }
