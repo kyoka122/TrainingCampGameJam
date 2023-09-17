@@ -179,6 +179,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _excutionTime: 2
+  _character: {fileID: 289032651}
+  _borderLine: {fileID: 1442282308}
+  _color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!212 &89469058
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -220,8 +223,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -3
-  m_Sprite: {fileID: 21300000, guid: a0f064c5dc61e2645b189ba853c5313a, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.20080614, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 71a7c9a1c0bfd8640ac32450d1b7783d, type: 3}
+  m_Color: {r: 0.13201608, g: 0.412198, b: 0.8396226, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -240,7 +243,7 @@ Transform:
   m_GameObject: {fileID: 89469053}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -2.5, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1974441579}
@@ -1755,7 +1758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _character: {fileID: 289032651}
   _generateObject: {fileID: 931754700}
-  _generateY: 5
+  _generateY: 6
   _generateOffset: {x: 0, y: 11.2, z: 0}
 --- !u!1 &1934231130
 GameObject:
@@ -1856,9 +1859,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterCamera: {fileID: 1934231132}
   _character: {fileID: 289032651}
-  _characterView: {fileID: 655916098}
-  _borderLineView: {fileID: 89469053}
-  _cameraHeightMultiply: 0.05
+  _cameraChaseObject:
+  - {fileID: 655916098}
+  - {fileID: 89469053}
+  - {fileID: 1767324699}
+  _cameraHeightMultiply: 0.01
   _isIgnoreChaseOnFall: 0
 --- !u!1 &1953666845
 GameObject:
