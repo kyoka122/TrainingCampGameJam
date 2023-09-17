@@ -3,19 +3,19 @@ using UnityEngine;
 
 namespace InGameManagerStates
 {
-    public class FallStartState:BaseInGameManager
+    public class FallStartInGame:BaseInGameState
     {
         protected override InGameState State => InGameState.FallStart;
         
         protected override void Entry()
         {
-            borderLine.ChangeBorderLineHeight(character,borderLineUnderLength);
+            BorderLine.ChangeBorderLineHeight(Character,BorderLineUnderLength);
         }
 
         protected override InGameState UpdateGame()
         {
-            character.UpdateHeight(Time.deltaTime);
-            if (timer.IsTimeOver())
+            Character.UpdateHeight(Time.deltaTime);
+            if (Timer.IsTimeOver())
             {
                 Finish();
                 return InGameState.PlayUI;
@@ -28,10 +28,10 @@ namespace InGameManagerStates
                 return InGameState.PlayUI;
             }
 
-            if (character.HeightObservable.Value < borderLine.HeightObservable.Value + borderLineDisplayLength)
+            if (Character.HeightObservable.Value < BorderLine.HeightObservable.Value + BorderLineDisplayLength)
             {
                 ActiveJumpCard();
-                ActiveBoarderLine();
+                //ActiveBoarderLine();
                 return InGameState.WaitClick;
             }
 
@@ -40,13 +40,13 @@ namespace InGameManagerStates
 
         private void ActiveJumpCard()
         {
-            spawner.SetCard();
+            Spawner.SetCard();
         }
         
-        private void ActiveBoarderLine()
+        /*private void ActiveBoarderLine()
         {
-            borderLineView.SetActive(true);
-        }
+            BorderLineView.SetActive(true);
+        }*/
 
         protected override void Exit()
         {

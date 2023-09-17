@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace InGameManagerStates
 {
-    public class WaitNextJumpState:BaseInGameManager
+    public class WaitNextJumpInGame:BaseInGameState
     {
         protected override InGameState State => InGameState.WaitNextJump;
         protected override void Entry()
@@ -13,14 +13,14 @@ namespace InGameManagerStates
 
         protected override InGameState UpdateGame()
         {
-            timer.UpdateTimer();
-            if (timer.IsTimeOver())
+            Timer.UpdateTimer();
+            if (Timer.IsTimeOver())
             {
                 Finish();
                 return InGameState.PlayUI;
             }
             
-            character.UpdateHeight(Time.deltaTime);
+            Character.UpdateHeight(Time.deltaTime);
             
             
             if (OverBorderline())
@@ -39,9 +39,8 @@ namespace InGameManagerStates
         
         private void Jump()
         {
-            character.Jump(jumpPower);
-            jumpCount++;
-            borderLineView.SetActive(false);
+            Character.Jump(JumpPower);//TODO: 初速を変える？ GetClick.chosenJumpObjectTypeから次のジャンプオブジェクトを取得できる。
+            BorderLineView.SetActive(false);
         }
     }
 }

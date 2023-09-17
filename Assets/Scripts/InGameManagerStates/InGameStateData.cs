@@ -8,15 +8,14 @@ namespace InGameManagerStates
     public class InGameStateData
     {
         public InGameState State => state;
-        public BaseInGameManager InGameManager=>inGameManager;
+        public BaseInGameState InGameState=>inGameState;
         
         [SerializeField] private InGameState state;
-        [SerializeField] private BaseInGameManager inGameManager;
+        [SerializeField] private BaseInGameState inGameState;
     }
     
     public enum InGameState
     {
-        CountDown,
         Jumping,
         FallStart,
         WaitClick,

@@ -17,10 +17,14 @@ public class Spawner : MonoBehaviour
     public Dictionary<JumpObjectType, List<Destroyer>> spawnedData;
     [SerializeField] private RandomCardSelect select;
     public int spawnCount;
-
-    void Start()
+    [SerializeField] private int speedAndCardUpRate = 5;
+    
+    private int _jumpedCount=0;
+    
+    public void Init()
     {
         spawnedData = new Dictionary<JumpObjectType, List<Destroyer>>();
+        select.Init(spawnCount);
         for (int i = 0; i < prefabs.Count; i++) Spawn(prefabs[i], (JumpObjectType)Enum.GetValues(typeof(JumpObjectType)).GetValue(i));
 
         //SetCard();
@@ -28,7 +32,7 @@ public class Spawner : MonoBehaviour
 
     public void SetCard()
     {
-        select.SelectCards();
+        select.SelectCards(Math.Min(_jumpedCount/speedAndCardUpRate+2,spawnCount));
 
         int index = 0;
         foreach (int num in select.compareNum)
@@ -36,6 +40,8 @@ public class Spawner : MonoBehaviour
             ActiveSwitch((JumpObjectType)Enum.GetValues(typeof(JumpObjectType)).GetValue(num), index);
             index++;
         }
+
+        _jumpedCount++;
     }
 
     void Spawn(GameObject prefab, JumpObjectType type)

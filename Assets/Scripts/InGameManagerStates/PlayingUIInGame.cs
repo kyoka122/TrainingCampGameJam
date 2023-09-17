@@ -2,7 +2,7 @@
 
 namespace InGameManagerStates
 {
-    public class PlayingUIState:BaseInGameManager
+    public class PlayingUIInGame:BaseInGameState
     {
         protected override InGameState State => InGameState.PlayUI;
         protected override void Entry()

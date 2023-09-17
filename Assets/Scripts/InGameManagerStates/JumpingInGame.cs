@@ -1,11 +1,14 @@
 ﻿using Managers;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace InGameManagerStates
 {
-    public class JumpingState:BaseInGameManager
+    public class JumpingInGame:BaseInGameState
     {
         protected override InGameState State => InGameState.Jumping;
+
         
         protected override void Entry()
         {
@@ -14,14 +17,15 @@ namespace InGameManagerStates
 
         protected override InGameState UpdateGame()
         {
-            character.UpdateHeight(Time.deltaTime);
-            if (timer.IsTimeOver())
+            Timer.UpdateTimer();
+            Character.UpdateHeight(Time.deltaTime);
+            if (Timer.IsTimeOver())
             {
                 Finish();
                 return InGameState.PlayUI;
             }
             
-            if (character.IsFallObservable.Value)
+            if (Character.IsFallObservable.Value)
             {
                 return InGameState.FallStart;
             }
