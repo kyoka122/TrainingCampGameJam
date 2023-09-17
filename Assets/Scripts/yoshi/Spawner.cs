@@ -11,19 +11,18 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     GameObject prefab;
     [SerializeField]
-    int spawnCount = 1;
+    int spawnCount;
     [SerializeField]
-    float spawnInterval = 0.1f;
+    float spawnInterval;
     [SerializeField]
-    Vector3 minSpawnPosition = Vector3.zero;
+    float destroyWaitTime;
     [SerializeField]
-    Vector3 maxSpawnPosition = Vector3.zero;
-    [SerializeField]
-    float destroyWaitTime = 3;
+    List<Transform> pos = new List<Transform>();
 
     WaitForSeconds spawnIntervalWait;
 
     void Start()
+
     {
         spawnIntervalWait = new WaitForSeconds(spawnInterval);
 
@@ -48,21 +47,23 @@ public class Spawner : MonoBehaviour
     void Spawn(GameObject prefab)
     {
         Destroyer destroyer;
-        Vector3 pos = new Vector3(Random.Range(minSpawnPosition.x, maxSpawnPosition.x), Random.Range(minSpawnPosition.y, maxSpawnPosition.y), Random.Range(minSpawnPosition.z, maxSpawnPosition.z));
 
-        if (useObjectPool)
+        for (int i = 0;i < spawnCount; i++)
         {
-            destroyer = poolManager.GetGameObject(prefab, pos, Quaternion.identity).GetComponent<Destroyer>();
-            destroyer.PoolManager = poolManager;
-        }
-        else
-        {
-            destroyer = Instantiate(prefab, pos, Quaternion.identity).GetComponent<Destroyer>();
-        }
+            if (useObjectPool)
+            {
+                destroyer = poolManager.GetGameObject(prefab, pos[i].localPosition, Quaternion.identity).GetComponent<Destroyer>();
+                destroyer.PoolManager = poolManager;
+            }
+            else
+            {
+                destroyer = Instantiate(prefab).GetComponent<Destroyer>();
+            }
 
-        if (destroyer != null)
-        {
-            destroyer.StartDestroyTimer(destroyWaitTime);
+            if (destroyer != null)
+            {
+                destroyer.StartDestroyTimer(destroyWaitTime);
+            }
         }
     }
 }
