@@ -9,7 +9,6 @@ public class JumpObject : ScriptableObject
     public string objectName;
     public float jumpHeight;
     public float timeToHighestPoint;
-    public List<int>id = new List<int>();
     public Sprite icon;
     public Sprite jumpObjectSprite;
 }

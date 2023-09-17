@@ -33,7 +33,7 @@ public class PoolManager : MonoBehaviour
         Destroy(obj);   
     }
 
-    public GameObject GetGameObject(GameObject prefab, Vector3 position, Quaternion rotation)
+    public GameObject GetGameObject(GameObject prefab, Vector2 position, Quaternion rotation)
     {
         Prefab = prefab;
         GameObject obj=pool.Get();
