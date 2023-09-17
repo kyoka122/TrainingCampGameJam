@@ -1755,7 +1755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _character: {fileID: 289032651}
   _generateObject: {fileID: 931754700}
-  _generateY: 5
+  _generateY: 6
   _generateOffset: {x: 0, y: 11.2, z: 0}
 --- !u!1 &1934231130
 GameObject:
@@ -1856,9 +1856,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterCamera: {fileID: 1934231132}
   _character: {fileID: 289032651}
-  _characterView: {fileID: 655916098}
-  _borderLineView: {fileID: 89469053}
-  _cameraHeightMultiply: 0.05
+  _cameraChaseObject:
+  - {fileID: 655916098}
+  - {fileID: 89469053}
+  - {fileID: 1767324699}
+  _cameraHeightMultiply: 0.01
   _isIgnoreChaseOnFall: 0
 --- !u!1 &1953666845
 GameObject:

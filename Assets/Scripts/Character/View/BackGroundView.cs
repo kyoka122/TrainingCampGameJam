@@ -27,14 +27,14 @@ namespace Character.View
 
             _character.HeightObservable.Subscribe(height =>
             {
-                transform.position = new Vector3(transform.position.x, -height, transform.position.z);
+                transform.localPosition = new Vector3(transform.localPosition.x, -height, transform.localPosition.z);
 
                 if(lastGeneratedObject.transform.position.y < _generateY)
                 {
                     GameObject obj = Instantiate(_generateObject);
                     obj.transform.parent = transform;
-                    obj.transform.position = lastGeneratedObject.transform.position;
-                    obj.transform.position += _generateOffset;
+                    obj.transform.localPosition = lastGeneratedObject.transform.localPosition;
+                    obj.transform.localPosition += _generateOffset;
                     lastGeneratedObject = obj;
                 }
             });
