@@ -18,12 +18,12 @@ public class Spawner : MonoBehaviour
     [SerializeField] private RandomCardSelect select;
     public int spawnCount;
 
-    public void Init()
+    void Start()
     {
         spawnedData = new Dictionary<JumpObjectType, List<Destroyer>>();
         for (int i = 0; i < prefabs.Count; i++) Spawn(prefabs[i], (JumpObjectType)Enum.GetValues(typeof(JumpObjectType)).GetValue(i));
     }
-    
+
     public void SetCard()
     {
         select.SelectCards();
@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void Spawn(GameObject prefab, JumpObjectType type)
+    void Spawn(GameObject prefab, JumpObjectType type)
     {
         var destroyers = new List<Destroyer>();
         for (int i = 0; i < spawnCount; i++)

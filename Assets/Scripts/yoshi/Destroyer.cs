@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Destroyer : MonoBehaviour
 {
+    public JumpObjectType jumpObjectType;
     public PoolManager PoolManager { get; set; }
 
     public void StartDestroyTimer(float time)

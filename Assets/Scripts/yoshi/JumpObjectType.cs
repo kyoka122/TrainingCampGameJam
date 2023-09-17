@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum JumpObjectType
 {
+    None,
     Marshmallow,
     Hopping,
     Trampoline,
