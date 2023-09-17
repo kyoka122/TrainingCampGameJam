@@ -12,11 +12,18 @@ namespace Character.View
         [SerializeField] private AnimationCurve _curve;
         [SerializeField] private float _excutionTime;
 
+        [SerializeField] private JumpCharacterHeightModel _character;
+        [SerializeField] private BorderLine _borderLine;
+        [SerializeField] private Color _color;
+
         private bool _isExcution = false;
         private float _timeCounter = 0;
+        private Color _originColor;
 
         private void Awake()
         {
+            _originColor = _spriteRenderer.color;
+
             this.ObserveEveryValueChanged(isActive => gameObject.activeSelf).Subscribe(isActive =>
             {
                 if (isActive)
@@ -29,6 +36,15 @@ namespace Character.View
 
         private void Update()
         {
+            if(_borderLine.HeightObservable.Value < _character.HeightObservable.Value)
+            {
+                _spriteRenderer.color = _color;
+            }
+            else
+            {
+                _spriteRenderer.color = _originColor;
+            }
+
             if(_isExcution)
             {
                 _timeCounter += Time.deltaTime;
@@ -39,6 +55,7 @@ namespace Character.View
                 {
                     _spriteRenderer.color = new Color(_spriteRenderer.color.r, _spriteRenderer.color.g, _spriteRenderer.color.b, 1.0f);
                     _isExcution = false;
+                    _timeCounter = 0;
                 }
             }
         }
