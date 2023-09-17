@@ -6,10 +6,13 @@ using UnityEngine;
 
 public class RandomCardSelect : MonoBehaviour
 {
-    [SerializeField] int cardNum;
+    public int cardNum;
+    public bool isSelect;
+    public List<int> compareNum = new List<int>();
     private List<JumpObjectType> selectedCards = new List<JumpObjectType>();
-    private List<int> compareNum = new List<int>();
     private bool isSelectStop = false;
+    [SerializeField]
+    Spawner spawner;
 
     // ƒJ[ƒh‚Ìí—Ş‚ğİ’è
     private JumpObjectType[] cardTypes = {
@@ -28,16 +31,18 @@ public class RandomCardSelect : MonoBehaviour
         if(isSameCards())
         {
             ChangeLastCard();
-        }    
+        }
+        if (isSelect) {
+            for (int i = 0; i < cardNum; i++)
+            {
+                spawner.ActiveSwitch(compareNum[i]);
+            }
+        }
+        isSelect = false;
     }
 
     void SelectCards()
     {
-        for (int i = 0; i < cardTypes.Length; i++)
-        {
-            int rd = Random.Range(0, 6);
-        }
-
         for (int i = 0; i < cardNum; i++)
         {
             int rd = Random.Range(0, System.Enum.GetValues(typeof(JumpObjectType)).Length);
