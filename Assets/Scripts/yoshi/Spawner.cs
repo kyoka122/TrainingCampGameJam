@@ -22,17 +22,18 @@ public class Spawner : MonoBehaviour
     {
         spawnedData = new Dictionary<JumpObjectType, List<Destroyer>>();
         for (int i = 0; i < prefabs.Count; i++) Spawn(prefabs[i], (JumpObjectType)Enum.GetValues(typeof(JumpObjectType)).GetValue(i));
+    }
 
-        //spawnedData = new List<Destroyer>(spawnCount);
+    public void SetCard()
+    {
         select.SelectCards();
 
         int index = 0;
-        foreach(int num in select.compareNum)
+        foreach (int num in select.compareNum)
         {
             ActiveSwitch((JumpObjectType)Enum.GetValues(typeof(JumpObjectType)).GetValue(num), index);
             index++;
         }
-
     }
 
     void Spawn(GameObject prefab, JumpObjectType type)

@@ -11,7 +11,7 @@ public class GetClick : MonoBehaviour
     [SerializeField]
     int cardNum;
 
-    void Update()
+    public JumpObjectType TryGetJumpObject()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -28,6 +28,8 @@ public class GetClick : MonoBehaviour
                     }
                 }
             }
+            return hit2d.transform.gameObject.GetComponent<Destroyer>().jumpObjectType;
         }
+        return JumpObjectType.None;
     }
 }
