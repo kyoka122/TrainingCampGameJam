@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644abf5e4d4aef2469f02cf10ddf738a, type: 3}
   m_Name: Tranpoline
   m_EditorClassIdentifier: 
-  objectName: Toranpoline
+  objectName: 2
   jumpHeight: 20
-  timeToHighestPoint: 3
-  icon: {fileID: 0}
   jumpObjectSprite: {fileID: 0}

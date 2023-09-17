@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[CreateAssetMenu(fileName = "JumpObjectData", menuName = "JumpObject")]
+[CreateAssetMenu(fileName = "JumpCard", menuName = "JumpCard")]
 public class JumpObject : ScriptableObject
 {
-    public string objectName;
+    public JumpObjectType objectName;
     public float jumpHeight;
-    public float timeToHighestPoint;
-    public Sprite icon;
+    //public float timeToHighestPoint;
+    //public Sprite icon;
     public Sprite jumpObjectSprite;
 }
