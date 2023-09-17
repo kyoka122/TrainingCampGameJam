@@ -26,7 +26,6 @@ public class DataBaseManager : MonoBehaviour
             {
                 JumpObject jumpObject = ScriptableObject.CreateInstance("JumpObject") as JumpObject;
                 jumpObject = cardData.jumpObjectLists[i];
-                Debug.Log(jumpObject.objectName);
             }
 
         }
