@@ -6,5 +6,6 @@ public enum JumpObjectType
 {
     Marshmallow,
     Hopping,
-    Trampoline
+    Trampoline,
+    Dummy
 }

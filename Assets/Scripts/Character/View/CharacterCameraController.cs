@@ -10,15 +10,16 @@ namespace Character.View
     {
         [SerializeField] private Camera _characterCamera;
         [SerializeField] private JumpCharacterHeightModel _character;
-        [SerializeField] private GameObject _characterView;
-        [SerializeField] private GameObject _borderLineView;
+        [SerializeField] private List<GameObject> _cameraChaseObject;
         [SerializeField] private float _cameraHeightMultiply;
         [SerializeField] private bool _isIgnoreChaseOnFall;
 
         private void Awake()
         {
-            _characterView.transform.parent = _characterCamera.transform;
-            _borderLineView.transform.parent = _characterCamera.transform;
+            foreach(GameObject obj in _cameraChaseObject)
+            {
+                obj.transform.parent = _characterCamera.transform;
+            }
         }
 
         private void Update()

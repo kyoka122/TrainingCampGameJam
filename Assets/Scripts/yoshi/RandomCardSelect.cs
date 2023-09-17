@@ -18,24 +18,13 @@ public class RandomCardSelect : MonoBehaviour
     private JumpObjectType[] cardTypes = {
         JumpObjectType.Marshmallow,
         JumpObjectType.Hopping,
-        JumpObjectType.Trampoline
+        JumpObjectType.Trampoline,
+        JumpObjectType.Dummy 
     };
 
-    void Start()
-    {
-        //SelectCards();
-    }
     void Update()
     {
         UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
-
-        //if (isSelect) {
-          //  for (int i = 0; i < cardNum; i++)
-            //{
-              //  spawner.ActiveSwitch(compareNum[i]);
-            //}
-        //}
-        //isSelect = false;
     }
 
     public void SelectCards()
