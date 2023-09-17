@@ -1,8 +1,10 @@
-﻿namespace Managers.InGameManagerStates
+﻿using Managers;
+
+namespace InGameManagerStates
 {
-    public class FallingState:BaseInGameManager
+    public class WaitChooseCardState:BaseInGameManager
     {
-        protected override InGameState State => InGameState.Falling;
+        protected override InGameState State => InGameState.WaitChooseCard;
         
         protected override void Entry()
         {
@@ -11,7 +13,7 @@
 
         protected override InGameState UpdateGame()
         {
-            return State;
+            
         }
 
         protected override void Exit()

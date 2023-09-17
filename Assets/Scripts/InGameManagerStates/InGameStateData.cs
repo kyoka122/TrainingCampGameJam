@@ -1,7 +1,8 @@
 ﻿using System;
+using Managers;
 using UnityEngine;
 
-namespace Managers.InGameManagerStates
+namespace InGameManagerStates
 {
     [Serializable]
     public class InGameStateData
@@ -16,6 +17,10 @@ namespace Managers.InGameManagerStates
     public enum InGameState
     {
         Jumping,
-        Falling
+        FallStart,
+        WaitChooseCard,
+        WaitClick,
+        OverBoarderLine,
+        WaitNextJump,
     }
 }

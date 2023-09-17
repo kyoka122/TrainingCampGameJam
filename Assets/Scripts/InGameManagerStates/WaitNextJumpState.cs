@@ -2,10 +2,9 @@
 
 namespace InGameManagerStates
 {
-    public class JumpingState:BaseInGameManager
+    public class WaitNextJumpState:BaseInGameManager
     {
-        protected override InGameState State => InGameState.Jumping;
-        
+        protected override InGameState State => InGameState.WaitNextJump;
         protected override void Entry()
         {
             
@@ -13,11 +12,18 @@ namespace InGameManagerStates
 
         protected override InGameState UpdateGame()
         {
-            if ()//最高点に到達
+            if (IsReachBorderLine())
             {
-                return InGameState.WaitChooseCard;
+                Jump();
+                return InGameState.Jumping;
             }
+
             return State;
+        }
+
+        private bool IsReachBorderLine()
+        {
+            
         }
 
         protected override void Exit()

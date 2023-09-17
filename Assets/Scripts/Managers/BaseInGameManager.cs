@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Managers.InGameManagerStates;
+using InGameManagerStates;
 using UnityEngine;
 
 namespace Managers
@@ -45,6 +45,11 @@ namespace Managers
         }
 
         protected void ActiveJumpCard()
+        {
+            
+        }
+
+        protected bool OverBorderline()
         {
             
         }
