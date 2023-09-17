@@ -31,6 +31,7 @@ namespace InGameManagerStates
                 //カード情報を取得
                 string cardType = GetCardType();
                 CreateJumpObject(cardType);
+                
                 return InGameState.WaitNextJump;
             }
             

@@ -11,7 +11,7 @@ public class GetClick : MonoBehaviour
     [SerializeField]
     int cardNum;
 
-    void Update()
+    public void GetCard()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -25,6 +25,7 @@ public class GetClick : MonoBehaviour
                     foreach(Destroyer sp in spData)
                     {
                         sp.gameObject.SetActive(false);
+                        sp
                     }
                 }
             }

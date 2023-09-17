@@ -40,7 +40,7 @@ namespace InGameManagerStates
 
         private void ActiveJumpCard()
         {
-            //TODO: カード設定
+            spawner.SetCard();
         }
         
         private void ActiveBoarderLine()

@@ -24,16 +24,21 @@ namespace Managers
         [SerializeField] protected float jumpPower;
         [SerializeField] protected Timer timer;
         [SerializeField] private InGameUI inGameUI;
+        [SerializeField] protected Spawner spawner;
         
         [SerializeField] protected float gameTime;
+        [SerializeField] private int speedAndCardUpRate = 5;
         
         private BaseInGameManager _currentInGameManager;
 
+        protected int jumpCount = 0;
+        protected int cardCount = 1;
         
         private async void Start()
         {
             timer.Init(gameTime);
             inGameUI.Init();
+            spawner.Init();
             _currentInGameManager = stateData.Find(data => data.State==InGameState.Jumping).InGameManager;
             _currentInGameManager.Entry();
 

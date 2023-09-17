@@ -40,6 +40,7 @@ namespace InGameManagerStates
         private void Jump()
         {
             character.Jump(jumpPower);
+            jumpCount++;
             borderLineView.SetActive(false);
         }
     }
