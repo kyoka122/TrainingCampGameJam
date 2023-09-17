@@ -1,4 +1,5 @@
 ﻿using Managers;
+using UnityEngine;
 
 namespace InGameManagerStates
 {
@@ -13,11 +14,19 @@ namespace InGameManagerStates
 
         protected override InGameState UpdateGame()
         {
+            timer.UpdateTimer();
+            if (timer.IsTimeOver())
+            {
+                Finish();
+            }
+            character.UpdateHeight(Time.deltaTime);
+            
             if (OverBorderline())
             {
-                return InGameState.OverBoarderLine;
+                GameOver();
+                return InGameState.PlayUI;
             }
-            if ()//Clockしたら
+            if (Input.GetMouseButtonDown(0))//Clockしたら
             {
                 //カード情報を取得
                 string cardType = GetCardType();

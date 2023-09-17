@@ -9,28 +9,43 @@ namespace InGameManagerStates
         
         protected override void Entry()
         {
-            
+            borderLine.ChangeBorderLineHeight(character,borderLineUnderLength);
         }
 
         protected override InGameState UpdateGame()
         {
+            character.UpdateHeight(Time.deltaTime);
+            if (timer.IsTimeOver())
+            {
+                Finish();
+                return InGameState.PlayUI;
+            }
+            
             if (OverBorderline())
             {
                 Debug.LogError($"ボーダーライン表示前にボーダーラインを超えています。");
-                return InGameState.OverBoarderLine;
+                GameOver();
+                return InGameState.PlayUI;
             }
-            if ()//基底秒数たったらカードとボーダーライン表示。
+
+            if (character.HeightObservable.Value < borderLine.HeightObservable.Value + borderLineDisplayLength)
             {
                 ActiveJumpCard();
                 ActiveBoarderLine();
                 return InGameState.WaitClick;
             }
+
             return State;
         }
 
+        private void ActiveJumpCard()
+        {
+            //TODO: カード設定
+        }
+        
         private void ActiveBoarderLine()
         {
-            
+            borderLineView.SetActive(true);
         }
 
         protected override void Exit()

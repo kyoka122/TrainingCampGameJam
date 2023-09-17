@@ -16,11 +16,11 @@ namespace InGameManagerStates
     
     public enum InGameState
     {
+        CountDown,
         Jumping,
         FallStart,
-        WaitChooseCard,
         WaitClick,
-        OverBoarderLine,
+        PlayUI,
         WaitNextJump,
     }
 }

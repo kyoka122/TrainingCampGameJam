@@ -1,4 +1,5 @@
 ﻿using Managers;
+using UnityEngine;
 
 namespace InGameManagerStates
 {
@@ -12,7 +13,17 @@ namespace InGameManagerStates
 
         protected override InGameState UpdateGame()
         {
-            if (IsReachBorderLine())
+            timer.UpdateTimer();
+            if (timer.IsTimeOver())
+            {
+                Finish();
+                return InGameState.PlayUI;
+            }
+            
+            character.UpdateHeight(Time.deltaTime);
+            
+            
+            if (OverBorderline())
             {
                 Jump();
                 return InGameState.Jumping;
@@ -21,14 +32,15 @@ namespace InGameManagerStates
             return State;
         }
 
-        private bool IsReachBorderLine()
-        {
-            
-        }
-
         protected override void Exit()
         {
             
+        }
+        
+        private void Jump()
+        {
+            character.Jump(jumpPower);
+            borderLineView.SetActive(false);
         }
     }
 }

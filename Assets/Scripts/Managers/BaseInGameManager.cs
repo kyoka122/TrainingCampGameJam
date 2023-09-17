@@ -1,7 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Application;
+using Character;
 using InGameManagerStates;
+using UI;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -10,25 +16,42 @@ namespace Managers
         protected abstract InGameState State { get; }
         
         [SerializeField] private List<InGameStateData> stateData;
+        [SerializeField] protected JumpCharacterHeightModel character;
+        [SerializeField] protected BorderLine borderLine;
+        [SerializeField] protected GameObject borderLineView;
+        [SerializeField] protected float borderLineUnderLength;
+        [SerializeField] protected float borderLineDisplayLength;
+        [SerializeField] protected float jumpPower;
+        [SerializeField] protected Timer timer;
+        [SerializeField] private InGameUI inGameUI;
+        
+        [SerializeField] protected float gameTime;
         
         private BaseInGameManager _currentInGameManager;
 
-        private void Start()
+        
+        private async void Start()
         {
-            _currentInGameManager = stateData.First().InGameManager;
+            timer.Init(gameTime);
+            inGameUI.Init();
+            _currentInGameManager = stateData.Find(data => data.State==InGameState.Jumping).InGameManager;
             _currentInGameManager.Entry();
-        }
 
-        private void Update()
-        {
-            var newState = _currentInGameManager.UpdateGame();
-            if (newState!=_currentInGameManager.State)
-            {
-                _currentInGameManager.Exit();
-                _currentInGameManager = stateData.Find(data => data.State==newState).InGameManager;
-                _currentInGameManager.Entry();
-            }
+            await inGameUI.CountDownAsync();
+
+            this.UpdateAsObservable()
+                .Subscribe(_ =>
+                {
+                    var newState = _currentInGameManager.UpdateGame();
+                    if (newState!=_currentInGameManager.State)
+                    {
+                        _currentInGameManager.Exit();
+                        _currentInGameManager = stateData.Find(data => data.State==newState).InGameManager;
+                        _currentInGameManager.Entry();
+                    }
+                }).AddTo(this);
         }
+        
 
         protected abstract void Entry();
 
@@ -38,20 +61,22 @@ namespace Managers
         
 
         #region Actions
-
-        protected void Jump()
-        {
-            
-        }
-
-        protected void ActiveJumpCard()
-        {
-            
-        }
-
+        
         protected bool OverBorderline()
         {
-            
+            return character.HeightObservable.Value < borderLine.HeightObservable.Value;
+        }
+
+        protected async void GameOver()
+        {
+            await inGameUI.GameOverAsync();
+            SceneManager.LoadScene(SceneName.Score);
+        }
+
+        protected async void Finish()
+        {
+            await inGameUI.PopUpFinishAsync();
+            SceneManager.LoadScene(SceneName.Score);
         }
 
         #endregion

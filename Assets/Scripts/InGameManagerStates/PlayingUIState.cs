@@ -2,10 +2,9 @@
 
 namespace InGameManagerStates
 {
-    public class WaitChooseCardState:BaseInGameManager
+    public class PlayingUIState:BaseInGameManager
     {
-        protected override InGameState State => InGameState.WaitChooseCard;
-        
+        protected override InGameState State => InGameState.PlayUI;
         protected override void Entry()
         {
             
@@ -13,7 +12,7 @@ namespace InGameManagerStates
 
         protected override InGameState UpdateGame()
         {
-            
+            return State;
         }
 
         protected override void Exit()

@@ -1,4 +1,5 @@
 ﻿using Managers;
+using UnityEngine;
 
 namespace InGameManagerStates
 {
@@ -13,9 +14,16 @@ namespace InGameManagerStates
 
         protected override InGameState UpdateGame()
         {
-            if ()//最高点に到達
+            character.UpdateHeight(Time.deltaTime);
+            if (timer.IsTimeOver())
             {
-                return InGameState.WaitChooseCard;
+                Finish();
+                return InGameState.PlayUI;
+            }
+            
+            if (character.IsFallObservable.Value)
+            {
+                return InGameState.FallStart;
             }
             return State;
         }
