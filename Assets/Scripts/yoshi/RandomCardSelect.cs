@@ -6,15 +6,14 @@ using UnityEngine;
 
 public class RandomCardSelect : MonoBehaviour
 {
-    public int cardNum;
     public bool isSelect;
-    public List<int> compareNum = new List<int>();
+    public List<int> compareNum ;
     private List<JumpObjectType> selectedCards = new List<JumpObjectType>();
     private bool isSelectStop = false;
     [SerializeField]
     Spawner spawner;
 
-    // �J�[�h�̎�ނ�ݒ�
+    // �J�[�h�̎�ނ�ݒ�
     private JumpObjectType[] cardTypes = {
         JumpObjectType.Marshmallow,
         JumpObjectType.Hopping,
@@ -22,43 +21,57 @@ public class RandomCardSelect : MonoBehaviour
         JumpObjectType.Dummy 
     };
 
+    public void Init(int maxCardCount)
+    {
+        Debug.Log($"max:{maxCardCount}");
+        compareNum = new List<int>(maxCardCount);
+    }
+    
     void Update()
     {
-        UnityEngine.Random.InitState((int)System.DateTime.Now.Ticks);
+        Random.InitState((int)System.DateTime.Now.Ticks);
     }
 
-    public void SelectCards()
+    public void SelectCards(int cardCount)
     {
-        for (int i = 0; i < cardNum; i++)
+        for (int i = 0; i < cardCount; i++)
         {
             int rd = Random.Range(0, System.Enum.GetValues(typeof(JumpObjectType)).Length);
             JumpObjectType selectType = (JumpObjectType)rd;
-            compareNum.Add(rd);
+            if (compareNum.Count<=i)
+            {
+                compareNum.Add(rd);
+                continue;
+            }
+            
+
+            compareNum[i] = rd;
+            //compareNum.Add(rd);//Addし続けたら無限増殖。
             Debug.Log(compareNum[i]);
         }
 
-        if (isSameCards())
+        if (isSameCards(cardCount))
         {
-            ChangeLastCard();
+            ChangeLastCard(cardCount);
         }
     }
 
-    bool isSameCards()
+    bool isSameCards(int cardCount)
     {
-        for (int i = 1; i< cardNum; i++)
+        for (int i = 1; i< cardCount; i++)
         {
             if (compareNum[i] != compareNum[0]) return false;
         }
         return true;
     }
 
-    void ChangeLastCard()
+    void ChangeLastCard(int cardCount)
     {
         int changeNum = Random.Range(1, System.Enum.GetValues(typeof(JumpObjectType)).Length);
         int afterNum = changeNum + (int)compareNum[0];
-        if(afterNum > cardNum) 
+        if(afterNum > cardCount) 
         {
-            afterNum -= cardNum;
+            afterNum -= cardCount;
         }
         compareNum[0] = afterNum;
         Debug.Log("change" + " " + compareNum[0]);

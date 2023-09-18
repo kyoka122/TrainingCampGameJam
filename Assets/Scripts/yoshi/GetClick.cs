@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class GetClick : MonoBehaviour
 {
+    public JumpObjectType? chosenJumpObjectType { get;private set; }
+    
     [SerializeField]
     Spawner spawner;
-    [SerializeField]
-    int cardNum;
 
-    public JumpObjectType? TryGetJumpObject()
+    public void UpdateClickedJumpObject()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -21,7 +21,11 @@ public class GetClick : MonoBehaviour
             if (hit2d)
             {
                 var isJumpCard =  hit2d.transform.gameObject.GetComponent<Destroyer>()?.jumpObjectType;
-                if(isJumpCard == null) return null;
+                if(isJumpCard == null)
+                {
+                    chosenJumpObjectType = null;
+                    return;
+                }
 
                 foreach (List<Destroyer> spData in spawner.spawnedData.Values)
                 {
@@ -31,14 +35,11 @@ public class GetClick : MonoBehaviour
                     }
                 }
                 Debug.Log(isJumpCard.Value);
-                return isJumpCard;
+                chosenJumpObjectType = isJumpCard;
+                return;
             }
         }
-        return null;
+        chosenJumpObjectType = null;
     }
 
-    private void Update()
-    {
-        TryGetJumpObject();
-    }
 }
