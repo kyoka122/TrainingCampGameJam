@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using System.Linq;
+using Managers;
 using UnityEngine;
 
 namespace InGameManagerStates
@@ -39,8 +40,9 @@ namespace InGameManagerStates
         
         private void Jump()
         {
-            Character.Jump(JumpPower);//TODO: 初速を変える？ GetClick.chosenJumpObjectTypeから次のジャンプオブジェクトを取得できる。
-            BorderLineView.SetActive(false);
+            float height=CardData.jumpObjectLists.First(data => data.objectName == GetClick.chosenJumpObjectType).jumpHeight;
+            JumpObjectBase.enabled = false;
+            Character.Jump(height);//TODO: 初速を変える？ GetClick.chosenJumpObjectTypeから次のジャンプオブジェクトを取得できる。
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using MyApplication;
 using Character;
+using DefaultNamespace;
 using InGameManagerStates;
 using UI;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace Managers
@@ -27,7 +29,7 @@ namespace Managers
         private InGameUI InGameUI=>inGameData.inGameUI;
         protected Spawner Spawner=>inGameData.spawner;
         protected GetClick GetClick=>inGameData.getClick;
-        protected SpriteRenderer JumpObjectBase=>inGameData.jumpObjectBase;
+        protected Image JumpObjectBase=>inGameData.jumpObjectBase;
 
         protected CardData CardData => inGameData.cardData;
         
@@ -85,12 +87,14 @@ namespace Managers
         protected async void GameOver()
         {
             await InGameUI.GameOverAsync();
+            ScoreHolder.score = Character.HeightObservable.Value;
             SceneManager.LoadScene(SceneName.Score);
         }
 
         protected async void Finish()
         {
             await InGameUI.PopUpFinishAsync();
+            ScoreHolder.score = Character.HeightObservable.Value;
             SceneManager.LoadScene(SceneName.Score);
         }
 
