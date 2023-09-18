@@ -8,17 +8,14 @@ public class ScoreCounter : MonoBehaviour
     public float scoreIncrementRate = 100.0f; // 1秒あたりのスコア増加率
     public TextMeshProUGUI scoreText;
 
-    private void Start()
-    {
-        UpdateScoreText();
-    }
 
-    private void Update()
+    public void UpdateScore(float lastScore)
     {
         // 1秒ごとにスコアを増加
-        if(score<=100){
-        score += scoreIncrementRate * Time.deltaTime;
-        UpdateScoreText();
+        if (score <= lastScore)
+        {
+            score += scoreIncrementRate * Time.deltaTime;
+            UpdateScoreText();
         }
     }
 
