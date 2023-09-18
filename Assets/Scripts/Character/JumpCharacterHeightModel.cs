@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using KanKikuchi.AudioManager;
 using UnityEngine;
 using UniRx;
 using Zenject;
@@ -50,6 +51,7 @@ namespace Character
         public void Jump(float power)
         {
             _jumpLogic.Jump(power);
+            SEManager.Instance.Play(SEPath.JUMP);
         }
     }
 }

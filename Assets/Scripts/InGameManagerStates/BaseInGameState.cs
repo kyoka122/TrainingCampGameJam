@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using MyApplication;
 using Character;
+using DefaultNamespace;
 using InGameManagerStates;
 using UI;
 using UniRx;
@@ -85,12 +86,14 @@ namespace Managers
         protected async void GameOver()
         {
             await InGameUI.GameOverAsync();
+            ScoreHolder.score = Character.HeightObservable.Value;
             SceneManager.LoadScene(SceneName.Score);
         }
 
         protected async void Finish()
         {
             await InGameUI.PopUpFinishAsync();
+            ScoreHolder.score = Character.HeightObservable.Value;
             SceneManager.LoadScene(SceneName.Score);
         }
 
