@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 1613465937}
   - component: {fileID: 1613465940}
   - component: {fileID: 1613465941}
+  - component: {fileID: 1613465942}
   m_Layer: 5
   m_Name: Text (TMP)(1)
   m_TagString: Untagged
@@ -497,9 +498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69630a2be197e064c9c2e3e6254ff426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
-  scoreIncrementRate: 27
-  scoreText: {fileID: 1613465938}
 --- !u!114 &1613465938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,7 +605,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4cfaabcbcf0e9534c80e89e2ee9b995c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 32f272a7bdae51242ab8cc438f796d06, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -701,6 +699,21 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613465935}
   m_Enabled: 1
+--- !u!114 &1613465942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613465935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c64590928ce9a344298c8d17da62e356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  scoreIncrementRate: 27
+  scoreText: {fileID: 1613465938}
 --- !u!1001 &1637364937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -832,7 +845,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682755758}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: be571d1c849517246b008af7fd43197f, type: 3}
+  m_Asset: {fileID: 0}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
