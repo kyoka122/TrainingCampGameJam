@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3ac60bf675482a41ba5ce3de316cf08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardNum: 2
   isSelect: 1
   compareNum: 
   spawner: {fileID: 1852275637777273891}
@@ -178,7 +177,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 1852275637777273891}
-  cardNum: 6
 --- !u!1 &1852275636559260271
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +530,7 @@ MonoBehaviour:
   - {fileID: 7878988428927738851, guid: 4c3374647cfdbcf40a6f05612ba5b371, type: 3}
   - {fileID: 6540999184888005008, guid: 44a94416cec140b4b9ed6e52040e42bd, type: 3}
   - {fileID: 4799585695970527162, guid: 158f404758ee0e64f8989c51e47eeb3c, type: 3}
-  - {fileID: 5526151531865630227, guid: ac6dfd45e7c53894eb5fa95e37b171c7, type: 3}
+  - {fileID: 4460134688598735493, guid: b68b71101549bd944a8294d453b50fbe, type: 3}
   pos:
   - {fileID: 1852275635907904216}
   - {fileID: 1852275637496371454}
@@ -542,6 +540,7 @@ MonoBehaviour:
   - {fileID: 1852275637056663612}
   select: {fileID: 1852275635835413238}
   spawnCount: 6
+  speedAndCardUpRate: 5
 --- !u!1 &7995067960262409795
 GameObject:
   m_ObjectHideFlags: 0
