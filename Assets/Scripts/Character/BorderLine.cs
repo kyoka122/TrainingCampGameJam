@@ -24,10 +24,10 @@ namespace Character
         }
 
         /// <summary>
-        /// �w��b����̃L�����N�^�[�̍����Ƀ{�[�_�[���C���̍�����ύX����
+        /// 指定秒数後のキャラクターの高さにボーダーラインの高さを変更する
         /// </summary>
-        /// <param name="character"> �Ǐ]����L�����N�^�[ </param>
-        /// <param name="atBorderLineTime"> ���b��̈ʒu�Ƀ{�[�_�[���C����ݒ肷�邩 </param>
+        /// <param name="character"> 追従するキャラクター </param>
+        /// <param name="atBorderLineTime"> 何秒後の位置にボーダーラインを設定するか </param>
         public void ChangeBorderLineHeight(JumpCharacterHeightModel character, float underLength)
         {
             _heightReactiveProperty.Value = character.HeightObservable.Value - underLength;
