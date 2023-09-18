@@ -7,6 +7,7 @@ using UI;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace Managers
@@ -28,7 +29,7 @@ namespace Managers
         private InGameUI InGameUI=>inGameData.inGameUI;
         protected Spawner Spawner=>inGameData.spawner;
         protected GetClick GetClick=>inGameData.getClick;
-        protected SpriteRenderer JumpObjectBase=>inGameData.jumpObjectBase;
+        protected Image JumpObjectBase=>inGameData.jumpObjectBase;
 
         protected CardData CardData => inGameData.cardData;
         

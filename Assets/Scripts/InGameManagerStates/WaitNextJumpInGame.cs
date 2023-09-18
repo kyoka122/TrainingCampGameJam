@@ -41,6 +41,7 @@ namespace InGameManagerStates
         private void Jump()
         {
             float height=CardData.jumpObjectLists.First(data => data.objectName == GetClick.chosenJumpObjectType).jumpHeight;
+            JumpObjectBase.enabled = false;
             Character.Jump(height);//TODO: 初速を変える？ GetClick.chosenJumpObjectTypeから次のジャンプオブジェクトを取得できる。
         }
     }

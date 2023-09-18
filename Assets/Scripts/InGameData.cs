@@ -3,6 +3,7 @@ using Character;
 using InGameManagerStates;
 using UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InGameData:MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class InGameData:MonoBehaviour
     public InGameUI inGameUI;
     public Spawner spawner;
     public GetClick getClick;
-    public SpriteRenderer jumpObjectBase;
+    public Image jumpObjectBase;
         
     public float gameTime;
     public CardData cardData;
