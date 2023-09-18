@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: 3
   jumpHeight: 0
-  jumpObjectSprite: {fileID: 0}
+  jumpObjectSprite: {fileID: 21300000, guid: e62c0aa915d8d3c4db93f9e8bc32ce81, type: 3}
