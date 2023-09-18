@@ -3,6 +3,7 @@ using MyApplication;
 using Character;
 using DefaultNamespace;
 using InGameManagerStates;
+using KanKikuchi.AudioManager;
 using UI;
 using UniRx;
 using UniRx.Triggers;
@@ -48,6 +49,7 @@ namespace Managers
             
             _currentInGameState = GetComponent<BaseInGameState>();
 
+            BGMManager.Instance.Play(BGMPath.IN_GAME_BGM,0.6f);
             await InGameUI.CountDownAsync();
 
             Character.Jump(JumpPower);
