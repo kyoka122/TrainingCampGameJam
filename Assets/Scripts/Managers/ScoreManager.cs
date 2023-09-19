@@ -2,6 +2,8 @@
 using Cysharp.Threading.Tasks;
 using DefaultNamespace;
 using KanKikuchi.AudioManager;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace Managers
@@ -14,7 +16,10 @@ namespace Managers
         {
             await UniTask.Delay(TimeSpan.FromSeconds(2.0f),cancellationToken:this.GetCancellationTokenOnDestroy());
             BGMManager.Instance.Play(BGMPath.IN_GAME_BGM, 0.4f);
-            PlayCount();
+            this.UpdateAsObservable().Subscribe(_=>
+            {
+                PlayCount();
+            }).AddTo(this);
         }
 
         private void PlayCount()
